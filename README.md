@@ -10,7 +10,7 @@ Page to outline how to prepare your own Confluent platform running in a Docker m
 * Kafka connect
 
 ## Objective
-Build up a standalone Confluent platform for experimental use, service would be unavailable if visiting from different host. 
+Build up a standalone Confluent platform for experimental use, service would be unavailable if visiting from different host owning different networks. 
 
 ## Prerequisite
 The prerequisite components before the execution must be ready beforehand, here followings are the mandatory tools.
