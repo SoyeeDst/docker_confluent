@@ -2,7 +2,7 @@
 A Docker toolkit to make a development Confluent platform ready in one stop.
 
 ## Overview
-Page to outline how to prepare your own Confluent platform running in a Docker machine as a one stop solution. The installed environment will be kept isolated from your running Docker host like a physical machine, covering the following modules :
+Page to outline how to prepare your own Confluent platform running in a Docker machine as a one stop solution. The installed environment will be kept isolated from your running Docker host like a physical machine covering the following modules :
 * ZooKeeper
 * Kafka broker
 * Schema registry
@@ -10,7 +10,7 @@ Page to outline how to prepare your own Confluent platform running in a Docker m
 * Kafka connect
 
 ## Objective
-Build up a standalone Confluent platform for experimental use, service would be unavailable if visiting from different host owning different networks. 
+Build up a standalone Confluent platform for experimental use, services would be unavailable if traffic goes from hosts without a shared network. 
 
 ## Prerequisite
 The prerequisite components before the execution must be ready beforehand, here followings are the mandatory tools.
