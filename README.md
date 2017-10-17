@@ -15,13 +15,13 @@ Build up a standalone Confluent platform for experimental use, each service woul
 
 ## Prerequisite
 The pre-existing components before the execution must be ready to support Docker native support above OS, here comes the list :
-* Docker Engine for Mac, would provide the capacity of managing the Docker containers, receiving commands from Docker client and etc. This would be the most essential part.
-* VirtualBox, Docker compose will have an virtual machine created with the supported driver VirtualBox, that running VM instance will be based on a tailored Linux kernel providing Docker native support.
-* Docker Compose,the orchestration tool of Docker containers, but limited all the containers to be in the same host. Would be pretty enough as the experimental use.
-* Docker CLI, Working as Docker Command input, go to have communication with Docker Engine via Docker REST API.
+* Docker Engine, would provide the capability of managing the Docker containers, receiving commands from Docker client and etc, the critical role in Docker world.
+* VirtualBox for Mac only due to partially missing native support in OSX. Docker compose will have an virtual machine created with the supported driver VirtualBox, that running VM instance will be based on a tailored Linux kernel providing Docker native support.
+* Docker Compose, Docker containers orchestration tool. The only drawback of it is the limitation of all the containers to be in the same host, be pretty enough as the experimental use though.
+* Docker CLI, Working as Docker human interface, go to have communication with Docker Engine via Docker REST API and feedback the execution result.
 
 ## Network Deployment View
-Bridge network model would be chosen by default to support the internal communication achieved by broadcasting the containers name in the specified subnet, the perfect option for a small scaled deployment. Port mapping and forwarding would be applied to provide the capability from external hosts. 
+Bridge network model would be chosen by default to support the internal communication achieved by broadcasting the containers name in the specified subnet, the perfect option for a small scaled deployment plus port mapping and forwarding to provide the capability from external hosts. 
  
 ## How TO
 Go to check out the scripts for provisioning infrastructure.
