@@ -1,0 +1,67 @@
+ersion: '3.3'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:3.3.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: confluentinc/cp-kafka:3.3.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${DOCKER_HOST_IP}:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - 9092:9092
+
+  schemaregistry:
+    image: confluentinc/cp-schema-registry:3.3.0
+    depends_on:
+      - kafka
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+      SCHEMA_REGISTRY_HOST_NAME: schemaregistry
+      SCHEMA_REGISTRY_LISTENERS: http://schemaregistry:8081
+    ports:
+      - 8081:8081
+  
+  restproxy:
+    image: confluentinc/cp-kafka-rest:3.3.0
+    depends_on:
+      - schemaregistry
+    environment:
+      KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_REST_LISTENERS: http://restproxy:8082
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schemaregistry:2181
+      KAFKA_REST_HOST_NAME: restproxy
+    ports:
+      - 8082:8082
+
+  kafkaconnect:
+    image: confluentinc/cp-kafka-connect:3.3.0
+    depends_on:
+      - restproxy
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka:9092
+      CONNECT_REST_PORT: 8082
+      CONNECT_GROUP_ID: quickstart
+      CONNECT_CONFIG_STORAGE_TOPIC: 'quickstart-config'
+      CONNECT_OFFSET_STORAGE_TOPIC: 'quickstart-offsets'
+      CONNECT_STATUS_STORAGE_TOPIC: 'quickstart-status'
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_VALUE_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_INTERNAL_KEY_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_INTERNAL_VALUE_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
+      CONNECT_REST_ADVERTISED_HOST_NAME: restproxy
+      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+      CONNECT_LOG4J_LOGGERS: ERROR
