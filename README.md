@@ -14,13 +14,13 @@ Build up a standalone Confluent platform for experimental use, services would be
 
 ## Prerequisite
 The prerequisite components before the execution must be ready beforehand, here followings are the mandatory tools.
-* Docker Engine for Mac, would provide the capacity of managing the Docker containers, receiving commands from Docker client and do the according actions. This would be the most essential part.
-* VirtualBox,  Docker compose will have an virtual machine created with the supported driver VirtualBox, that running VM instance will be based on a tailored Linux kernel providing Docker native support.
-* Docker Compose,  the orchestration tool of Docker containers, but limited all the containers to be in the same host. Would be pretty enough as the experimental use.
-* Docker CLI,  Working as Docker Command input, go to have communication with Docker Engine via Docker REST API.
+* Docker Engine for Mac, would provide the capacity of managing the Docker containers, receiving commands from Docker client and etc. This would be the most essential part.
+* VirtualBox, Docker compose will have an virtual machine created with the supported driver VirtualBox, that running VM instance will be based on a tailored Linux kernel providing Docker native support.
+* Docker Compose,the orchestration tool of Docker containers, but limited all the containers to be in the same host. Would be pretty enough as the experimental use.
+* Docker CLI, Working as Docker Command input, go to have communication with Docker Engine via Docker REST API.
 
 ## Network Deployment View
-Bridge network model would be used by default to ensure the internal communication between different containers, the perfect model for a small scaled deployment. For ports with public access purpose, port mapping and forwarding would be used to achieve the connectivity from external hosts. 
+Bridge network model would be used by default to ensure the internal communication achieved by broadcasting the containers name in the specified subnet, the perfect option for a small scaled deployment. For ports with public access purpose, port mapping and forwarding would be applied to provide the capability from external hosts. 
  
 ## How TO
 Go to check out the scripts for provisioning infrastructure.
@@ -37,7 +37,7 @@ OH-jund-MBP:docker_kafka_platform jund$
 ```
 You will find two files are already here after git clone finishes.
  
-Go to run provisioning.sh with VM name provided, this VM name would be the identifier of managed VMs which should not be duplicate as existing ones. As the result, one VM with specified name would be created based on the Docker image boot2docker. This may take some minutes since that would go to Docker Hub to pull required images.
+Go to run provisioning.sh along with your VM name. That would perform as the identifier of managed VMs that disallow it to be duplicated. As the result, one VM with specified name would be created based on the Docker image boot2docker. This may take a few minutes since that would go to Docker Hub to pull required images.
 
 ```
 OH-jund-MBP:docker_kafka_platform jund$ ./provisioning.sh confluent
@@ -132,8 +132,9 @@ Creating dockerkafkaplatform_kafkaconnect_1 ... done
 Confluent Docker containers are up and running now on host 192.168.99.104
 ```
 
-It is worth noting the Docker Host will be the ending output that gives us that the address information we can go to communicate with the containers. 
-Go to check the containers status to ensure the services to be healthy
+Worth noting the Docker host IP address would be given for later reference which performs as the delegation of all the exchange between the containers and outside world. 
+
+Go to check the containers status to ensure the services to be healthy.
 
 ```
 OH-jund-MBP:docker_kafka_platform jund$ eval $(docker-machine env confluent)
