@@ -1,5 +1,5 @@
 # Docker-Confluent
-A Docker toolkit to prepare a development Confluent platform
+A Docker toolkit to make a development Confluent platform ready in one stop.
 
 ## Overview
 Page to outline how to prepare your own Confluent platform running in a Docker machine as a one stop solution. The installed environment will be kept isolated from your running Docker host like a physical machine, covering the following modules :
