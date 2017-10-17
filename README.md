@@ -14,7 +14,7 @@ Page to outline how to prepare your own Confluent platform running in a Docker h
 Build up a standalone Confluent platform for experimental use, each service would reside in a Docker container.
 
 ## Prerequisite
-The pre-existing components before the execution must be ready beforehand, here followings are the mandatory tools.
+The pre-existing components before the execution must be ready to support Docker native support above OS, here comes the list :
 * Docker Engine for Mac, would provide the capacity of managing the Docker containers, receiving commands from Docker client and etc. This would be the most essential part.
 * VirtualBox, Docker compose will have an virtual machine created with the supported driver VirtualBox, that running VM instance will be based on a tailored Linux kernel providing Docker native support.
 * Docker Compose,the orchestration tool of Docker containers, but limited all the containers to be in the same host. Would be pretty enough as the experimental use.
