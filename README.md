@@ -21,6 +21,8 @@ The prerequisite components before the execution must be ready beforehand, here 
 
 ## Network Deployment View
 Bridge network model would be used by default to ensure the internal communication between different containers, the perfect model for a small scaled deployment. For ports with public access purpose, port mapping and forwarding would be used to achieve the connectivity from external hosts. 
+
+[]:https://github.com/guodongxiaren/ImageCache/raw/master/Logo/foryou.gif
  
 ## How TO
 Go to check out the scripts for provisioning infrastructure.
